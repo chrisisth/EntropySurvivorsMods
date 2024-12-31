@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Program - Kopieren.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="UAssetAPI">
+      <HintPath>..\UAssetAPI\bin\Debug\net8.0\UAssetAPI.dll</HintPath>
+    </Reference>
+    <PackageReference Include="ZstdSharp.Port" Version="0.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UAssetAPI\UAssetAPI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AssetList.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Mappings - Kopieren.usmap">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Mappings.usmap">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
