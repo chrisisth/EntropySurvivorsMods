@@ -1,3 +1,20 @@
+## Mod Creation Project
+
+### Overview
+This folder contains a C# project designed to help you create the mods for **Entropy Survivors**. The project includes all the necessary code and resources to develop the mods described earlier.
+
+### Key Features
+- **Mod Creation**: Easily create mods such as Enhanced Powerups and Increased Difficulty.
+- **User-Friendly**: The project is designed to be straightforward and easy to use.
+
+### Installation and Usage
+To use this project, follow these steps:
+1. Download and extract the project folder.
+2. Open the project in your preferred C# development environment (e.g., Visual Studio).
+3. Follow the instructions in the project README to create your mods.
+4. Once your mod is created, use a program called **RePak** to pack the asset folder:
+
+
 # UAssetAPI
 [![CI Status](https://img.shields.io/github/actions/workflow/status/atenfyr/UAssetAPI/build.yml?label=CI)](https://github.com/atenfyr/UAssetAPI/actions)
 [![Issues](https://img.shields.io/github/issues/atenfyr/UAssetAPI.svg?style=flat-square)](https://github.com/atenfyr/UAssetAPI/issues)
