@@ -274,14 +274,11 @@ internal class EditUpgradeLevels
                     }
 
                 };
-                if (ilevels <= 7)
-                {
-                    bonusUpgrade = CreateBonusParameterLevelUpgrade(myAsset, tagupgrade, 1, (float)(random.NextDouble() * (0.4 - 0.2) + 0.1), tmpnewBonusUpgrades.Count);
-                }
-                else
-                {
-                    bonusUpgrade = CreateBonusParameterLevelUpgrade(myAsset, tagupgrade, 1, (float)(random.NextDouble() * (0.2 - 0.1) + 0.1), tmpnewBonusUpgrades.Count);
-                }
+                int icparameters = parameters.Count <= 0 ? 1:1;
+                int iclevels = ilevels <= 0 ? 1 : 1;
+                double factor = 0.5 + (float)(random.NextDouble() * 0.5) / icparameters / iclevels;
+                bonusUpgrade = CreateBonusParameterLevelUpgrade(myAsset, tagupgrade, 1, (float)factor, tmpnewBonusUpgrades.Count);
+
                 tmpnewBonusUpgrades.Add(bonusUpgrade);
             }
             newBonusUpgrades.Value = tmpnewBonusUpgrades.ToArray();
