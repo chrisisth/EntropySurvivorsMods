@@ -244,7 +244,7 @@ internal class EditUpgradeLevels
             foreach (var tagupgrade in parameterstocheck)
             {
                 // Create a new bonus upgrade with random probability weight
-                StructPropertyData bonusUpgrade = new StructPropertyData
+                /*StructPropertyData bonusUpgrade = new StructPropertyData
                 {
                     Name = new FName(myAsset, "BonusParameterLevelUpgrade"),
                     Value = new List<PropertyData>
@@ -273,11 +273,11 @@ internal class EditUpgradeLevels
                         }
                     }
 
-                };
-                int icparameters = parameters.Count <= 0 ? 1:1;
-                int iclevels = ilevels <= 0 ? 1 : 1;
-                double factor = 0.5 + (float)(random.NextDouble() * 0.5) / icparameters / iclevels;
-                bonusUpgrade = CreateBonusParameterLevelUpgrade(myAsset, tagupgrade, 1, (float)factor, tmpnewBonusUpgrades.Count);
+                };*/
+                int icparameters = parameters.Count <= 0 ? 1: parameters.Count;
+                int iclevels = ilevels <= 0 ? 1 : ilevels;
+                double factor = ((0.5+ (float)(random.NextDouble() * 0.5)) / icparameters) / iclevels;
+                StructPropertyData bonusUpgrade = CreateBonusParameterLevelUpgrade(myAsset, tagupgrade, 1, (float)factor, tmpnewBonusUpgrades.Count);
 
                 tmpnewBonusUpgrades.Add(bonusUpgrade);
             }
