@@ -216,7 +216,7 @@ internal class EditUpgradeLevels
                 }
                 else
                 {
-                    // Remove auto abilities to add them as bonus only
+                    // Remove abilities to add them as bonus only
                     var tmpnewParameterUpgrades = new List<PropertyData>(newParameterUpgrades.Value);
                     tmpnewParameterUpgrades.Remove(upgrade);
                     newParameterUpgrades.Value = tmpnewParameterUpgrades.ToArray();
@@ -244,43 +244,25 @@ internal class EditUpgradeLevels
             foreach (var tagupgrade in parameterstocheck)
             {
                 // Create a new bonus upgrade with random probability weight
-                /*StructPropertyData bonusUpgrade = new StructPropertyData
-                {
-                    Name = new FName(myAsset, "BonusParameterLevelUpgrade"),
-                    Value = new List<PropertyData>
-                    {
-                        new StructPropertyData
-                        {
-                            Name = new FName(myAsset, "ParamID"),
-                            Value = new List<PropertyData>
-                            {
-                                new NamePropertyData
-                                {
-                                    Name = new FName(myAsset, "TagName"),
-                                    Value = new FName(myAsset, tagupgrade)
-                                }
-                            }
-                        },
-                        new IntPropertyData
-                        {
-                            Name = new FName(myAsset, "LevelsAdded"),
-                            Value = (1)
-                        },
-                        new FloatPropertyData
-                        {
-                            Name = new FName(myAsset, "ProbabilityWeight"),
-                            Value = (float)(random.NextDouble() * (1.0 - 0.1) + 0.1)
-                        }
-                    }
-
-                };*/
                 int icparameters = parameters.Count <= 0 ? 1: parameters.Count;
                 int iclevels = ilevels <= 0 ? 1 : ilevels;
-                double factor = ((0.5+ (float)(random.NextDouble() * 0.5)) / icparameters) / iclevels;
+                double factor = (0.5+ (float)(random.NextDouble() * 0.5)) / (icparameters* iclevels);
+
                 StructPropertyData bonusUpgrade = CreateBonusParameterLevelUpgrade(myAsset, tagupgrade, 1, (float)factor, tmpnewBonusUpgrades.Count);
 
                 tmpnewBonusUpgrades.Add(bonusUpgrade);
             }
+            foreach (StructPropertyData bonusUpgrade in tmpnewBonusUpgrades)
+            {
+                NamePropertyData tag = (NamePropertyData) ((StructPropertyData)bonusUpgrade.Value[0]).Value[0];
+                string tagvalue = ((FName)((NamePropertyData)tag).Value).Value.Value;
+                if (tagvalue.Contains("Core"))
+                {
+                    ((FloatPropertyData)bonusUpgrade.Value[2]).Value = 0.1f;
+                }
+            }
+
+
             newBonusUpgrades.Value = tmpnewBonusUpgrades.ToArray();
 
             // Update the level structure with new parameter and bonus upgrades
